@@ -1,50 +1,65 @@
 <html>
 <head>
     <title>Drawing!</title>
+    <style>
+        * {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
 <canvas id="canv">
 
 </canvas>
+<script src="Vector2.js"></script>
 <script>
+    function update() {
+        position.x += .5;
+    }
+
+    function gameLoop() {
+        update();
+        draw();
+        requestAnimationFrame(gameLoop);
+    }
+
     const canvas = document.getElementById("canv");
     const ctx = canvas.getContext("2d");
 
-    ctx.save()
+    let position = new Vector2(50, 50);
 
-    ctx.translate(50, 50)
+    function draw() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-    ctx.lineTo(0, -40)
-    ctx.lineTo(-40, 40)
-    ctx.lineTo(40, 40)
+        ctx.save();
 
-    ctx.fillStyle ="red"
-    ctx.fill()
+        ctx.translate(position.x, position.y);
+        ctx.lineTo(150, 10);
 
-    ctx.restore()
+        ctx.lineTo(90, 20);
+        ctx.lineTo(85, 0);
+        ctx.lineTo(80, 5);
+        ctx.lineTo(70, 5);
+        ctx.lineTo(65, 0);
+        ctx.lineTo(60, 20);
 
-    ctx.beginPath()
-    ctx.lineTo(250, 50)
+        ctx.lineTo(0, 10);
+        ctx.lineTo(50, 60);
 
-    ctx.lineTo(190, 60)
-    ctx.lineTo(185, 40)
-    ctx.lineTo(180, 45)
-    ctx.lineTo(170, 45)
-    ctx.lineTo(165, 40)
-    ctx.lineTo(160, 60)
+        ctx.lineTo(55, 55);
+        ctx.lineTo(95, 55);
 
-    ctx.lineTo(100, 50)
-    ctx.lineTo(150, 100)
+        ctx.lineTo(100, 60);
 
-    ctx.lineTo(155, 95)
-    ctx.lineTo(195, 95)
+        ctx.fillStyle = "black";
+        ctx.fill();
 
-    ctx.lineTo(200, 100)
+        ctx.restore()
+    }
 
-    ctx.fillStyle = "black"
-    ctx.fill()
-
-    ctx.restore()
+    requestAnimationFrame(gameLoop);
 </script>
 </body>
 </html>
