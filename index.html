@@ -12,27 +12,21 @@
 <canvas id="canv">
 
 </canvas>
-<script src="Vector2.js"></script>
+<script src="engine/components/Vector2.js"></script>
+<script src="engine/Engine.js"></script>
+<script src="engine/Input.js"></script>
+
 <script>
-    function update() {
-        position.x += .5;
-    }
-
-    function gameLoop() {
-        update();
-        draw();
-        requestAnimationFrame(gameLoop);
-    }
-
-    const canvas = document.getElementById("canv");
-    const ctx = canvas.getContext("2d");
-
     let position = new Vector2(50, 50);
 
-    function draw() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+    function update() {
+        if (Input.keysDown.includes('KeyW')) position.y -= 1;
+        if (Input.keysDown.includes('KeyS')) position.y += 1;
+        if (Input.keysDown.includes('KeyA')) position.x -= 1;
+        if (Input.keysDown.includes('KeyD')) position.x += 1;
+    }
 
+    function draw(ctx) {
         ctx.save();
 
         ctx.translate(position.x, position.y);
@@ -59,7 +53,7 @@
         ctx.restore()
     }
 
-    requestAnimationFrame(gameLoop);
+    Engine.start();
 </script>
 </body>
 </html>
