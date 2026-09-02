@@ -7,8 +7,8 @@ class Player extends GameObject {
     static accel = 0.1; //Player movement acceleration
     static grounded = false; //If player is on ground
 
-    static jumping = false;
-    static jumpingTimer = 20;
+    static jumping = false; //Is player currently jumping
+    static jumpingTimer = 20; //Duration of jumping
 
     draw() {
         const ctx = Engine.ctx;
@@ -55,21 +55,27 @@ class Player extends GameObject {
             }
         }
 
-        this.applyGravity();
+        this.physics();
     }
 
     jump(time) {
         Player.position.y -= Player.jumpPower * time;
     }
 
-    applyGravity() {
-        //Temp basic floor for player
+    //Basic Temp Physics
+    physics() {
         const floor = 500;
 
         if (Player.position.y > floor) {
             Player.position.y = floor;
         } else if (Player.position.y < floor){
             Player.position.y += Player.gravity;
+        }
+
+        if (Player.position.x > window.innerWidth - 50) {
+            Player.position.x = window.innerWidth - 50;
+        } else if (Player.position.x < 0) {
+            Player.position.x = 0;
         }
     }
 
