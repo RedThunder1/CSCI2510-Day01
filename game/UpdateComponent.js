@@ -1,0 +1,9 @@
+class UpdateComponent {
+    start() {
+
+    }
+
+    update() {
+
+    }
+}

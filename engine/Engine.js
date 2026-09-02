@@ -2,29 +2,33 @@ class Engine {
     static canvas;
     static ctx;
 
+    static currentScene;
+
     static start() {
         Engine.canvas = document.getElementById("canv");
         Engine.ctx = Engine.canvas.getContext("2d");
 
-        addEventListener("keydown", Input.keyDown)
-        addEventListener("keyup", Input.keyUp)
+        addEventListener("keydown", Input.keyDown);
+        addEventListener("keyup", Input.keyUp);
 
-        requestAnimationFrame(Engine.gameLoop)
+        this.currentScene.start();
+
+        requestAnimationFrame(Engine.gameLoop);
     }
 
     static gameLoop() {
         Engine.update();
         Engine.draw();
-        requestAnimationFrame(Engine.gameLoop)
+        requestAnimationFrame(Engine.gameLoop);
     }
 
     static draw() {
         Engine.canvas.width = window.innerWidth;
         Engine.canvas.height = window.innerHeight;
-        draw(Engine.ctx);
+        this.currentScene.draw(Engine.ctx);
     }
 
     static update() {
-        update();
+        Engine.currentScene.update();
     }
 }

@@ -1,0 +1,33 @@
+<html>
+<head>
+    <title>Game!</title>
+    <style>
+        * {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canv">
+
+</canvas>
+<script src="../engine/components/Vector2.js"></script>
+<script src="../engine/Input.js"></script>
+<script src="../engine/Engine.js"></script>
+<script src="../engine/components/Component.js"></script>
+<script src="../engine/components/GameObject.js"></script>
+<script src="../engine/components/Scene.js"></script>
+
+<script src="MainScene.js"></script>
+<script src="MainGameObject.js"></script>
+<script src="DrawComponent.js"></script>
+<script src="UpdateComponent.js"></script>
+<script src="Player.js"></script>
+
+<script>
+    Engine.currentScene = new MainScene();
+    Engine.start();
+</script>
+</body>
+</html>
